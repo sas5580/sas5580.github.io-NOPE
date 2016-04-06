@@ -56,15 +56,55 @@ var work = [
     }
 ];
 
-var projects = [
-    {
-    "title" : "LIBestimote",
-    "dates" : "November 2015",
-    "description" : "An android app that emulates a library system using Estimore beacons",
-    "images" : ["images/project1.png"],
-    "url" : "https://github.com/sas5580/LIBestimote"
+var projects = {
+    "projects" :[ {
+        "title" : "LIBestimote",
+        "dates" : "November 2015",
+        "description" : "An android app that emulates a library system using Estimore beacons",
+        "images" : ["images/project1.png"],
+        "url" : "https://github.com/sas5580/LIBestimote"
+        } ]
+};
+
+projects.display = function(){
+    for (i in projects.projects){
+        console.log(i);
+        $("#projects").append(HTMLprojectStart)
+        $(".project-entry:last").append(HTMLprojectTitle.replace("%data%",projects.projects[i].title));
+        $(".project-entry:last").append(HTMLprojectDates.replace("%data%",projects.projects[i].dates));
+        $(".project-entry:last").append(HTMLprojectDescription.replace("%data%",projects.projects[i].description));
+        for (j in projects.projects[i].images){
+            $(".project-entry:last").append(HTMLprojectImage.replace("%data%",projects.projects[i].images[j]));
+        }
     }
-];
+}
+
+function displayWork(){
+    for (i in work){
+        $("#workExperience").append(HTMLworkStart);
+        $(".work-entry:last").append(HTMLworkEmployer.replace("%data%",work[i].employer)+HTMLworkTitle.replace("%data%",work[i].title));
+        $(".work-entry:last").append(HTMLworkDates.replace("%data%",work[i].dates));
+        $(".work-entry:last").append(HTMLworkDescription.replace("%data%",work[i].description));
+    }
+}
+
+function inName(name){
+    var names = name.split(" ");
+    names[1] = names[1].toUpperCase();
+    names[0] = names[0].slice(0,1).toUpperCase() + names[0].slice(1).toLowerCase();
+    return names.join(" ");
+}
+
+/*
+$(document).click(function(loc) {
+    var x = loc.pageX;
+    var y = loc.pageY;
+
+    logClicks(x,y);
+});
+*/
+
+
 
 $("#header").prepend(HTMLheaderRole.replace("%data%",role));
 $("#header").prepend(HTMLheaderName.replace("%data%",bio.name));
@@ -84,14 +124,13 @@ if (bio.skills.length>0){
     }
 }
 
+displayWork();
+
+projects.display();
+
+$("#main").append(internationalizeButton);
 
 
-for (i in work){
-    $("#workExperience").append(HTMLworkStart);
-    $(".work-entry:last").append(HTMLworkEmployer.replace("%data%",work[i].employer)+HTMLworkTitle.replace("%data%",work[i].title));
-    $(".work-entry:last").append(HTMLworkDates.replace("%data%",work[i].dates));
-    $(".work-entry:last").append(HTMLworkDescription.replace("%data%",work[i].description));
-}
 
 /*
 var formattedName = HTMLheaderName.replace("%data%",bio.name);
