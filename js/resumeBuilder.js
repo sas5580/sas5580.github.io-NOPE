@@ -1,6 +1,4 @@
-var role = "Web Developer"
-
-var skills = ["programming","competition coding","HTML & CSS"]
+var role = "Software Engineer"
 
 var bio = {
     "name" : "Saswata Gupta",
@@ -9,39 +7,40 @@ var bio = {
         "mobile" : "416-452-4986",
         "email" : "gupta.saswata@gmail.com",
         "github" : "sas5580",
-        "location" : "Mississauga ON"
+        "location" : "Mississauga, ON"
     },
     "welcomeMessage" : "lorem ipsum dolor sit amet etc etc etc.",
-    "skills" : ["programming", "competition coding", "HTML & CSS","cooperation","work ethic"],
-    "pic": "images/fry.jpg"
+    "skills" : ["competition coding", "HTML & CSS","C++","Python"],
+    "pic": "images/pic.jpg"
 };
 
+
 var education = {
-    "schools" : {
+    "schools" :[  {
         "name" : "Glenforest Secondary School",
         "program" : "International Baccalaureate",
         "city" : "Mississauga, ON",
-        "graduation_year" : "2016",
-    },
+        "dates" : "2012-2016"
+        }  ],
 
     "online_courses" : [
         {
             "title" : "Intro to HTML and CSS at Udacity",
             "school" : "Udacity",
             "date" : "2016",
-            "url": "http://www.udacity.com/course/ud304"
+            "description": "Teaches how to convert digital design mockups into static web pages and how to approach page layout, how to break down a design mockup into page elements, and how to implement that in HTML and CSS."
         },
         {
             "title" : "How to use Git and Github at Udacity",
             "school" : "Udacity",
             "date" : "2016",
-            "url": "http://www.udacity.com/course/ud775"
+            "description": "Introduces the basics of using version control by focusing on a particular version control system called Git and a collaboration platform called GitHub."
         },
         {
             "title" : "Javascript Basics at Udacity",
             "school" : "Udacity",
             "date" : "2016",
-            "url": "http://www.udacity.com/course/ud804"
+            "description": "Explores the JavaScript programming language by creating an interactive webpage. Teaches the JavaScript programming fundamentals you need while building new elements and sections to enhance any website."
         }
     ]
 };
@@ -51,8 +50,8 @@ var work = [
     "title" : "Marking Assistant",
     "employer" : "Grand Park Kumon",
     "dates" : "November 2015 - Present",
-    "location" : "Mississauga",
-    "description" : "WORK DESCRIPTION HERE"
+    "location" : "Mississauga, ON",
+    "description" : "Cooperate with fellow employees to mark several students' homework and assignments provided by the Kumon program for mathematics and english. Occasionaly have to give feedback to the students on their performance and advice to improve their skills."
     }
 ];
 
@@ -60,15 +59,22 @@ var projects = {
     "projects" :[ {
         "title" : "LIBestimote",
         "dates" : "November 2015",
-        "description" : "An android app that emulates a library system using Estimore beacons",
-        "images" : ["images/project1.png"],
+        "description" : "An android app that emulates a library system, including a login system, book finder and checkout system, using Estimore beacons and android studio. This project was created by Nathan Jiang, Diana Chang, Alicia Yu and I as an entry to the hackathon HackWestern 2.",
+        "images" : ["images/lib2.png","images/lib1.png"],
         "url" : "https://github.com/sas5580/LIBestimote"
-        } ]
+        },
+        {
+        "title": "Abstract Art Generator",
+        "dates" : "December 2015",
+        "description" : "Using python and its Tk interface module as a graphical user interface, abstract pixel art is generated at random base on a multitude of factors including pixel size, color and position. Patterns in the art are created through the use of nested periodic functions as the main factor in determining colour. Running the program will result in a different peice of art every (most of the) time.",
+        "images" :["images/rng1.png","images/rng2.png","images/rng3.png"],
+        "url" : "https://github.com/sas5580/Abstract-Art-Generator"
+        }
+        ]
 };
 
 projects.display = function(){
     for (i in projects.projects){
-        console.log(i);
         $("#projects").append(HTMLprojectStart)
         $(".project-entry:last").append(HTMLprojectTitle.replace("%data%",projects.projects[i].title));
         $(".project-entry:last").append(HTMLprojectDates.replace("%data%",projects.projects[i].dates));
@@ -84,6 +90,7 @@ function displayWork(){
         $("#workExperience").append(HTMLworkStart);
         $(".work-entry:last").append(HTMLworkEmployer.replace("%data%",work[i].employer)+HTMLworkTitle.replace("%data%",work[i].title));
         $(".work-entry:last").append(HTMLworkDates.replace("%data%",work[i].dates));
+        $(".work-entry:last").append(HTMLworkLocation.replace("%data%",work[i].location));
         $(".work-entry:last").append(HTMLworkDescription.replace("%data%",work[i].description));
     }
 }
@@ -95,17 +102,6 @@ function inName(name){
     return names.join(" ");
 }
 
-/*
-$(document).click(function(loc) {
-    var x = loc.pageX;
-    var y = loc.pageY;
-
-    logClicks(x,y);
-});
-*/
-
-
-
 $("#header").prepend(HTMLheaderRole.replace("%data%",role));
 $("#header").prepend(HTMLheaderName.replace("%data%",bio.name));
 
@@ -115,7 +111,7 @@ $("#topContacts").append(HTMLgithub.replace("%data%",bio.contactInfo.github));
 $("#topContacts").append(HTMLlocation.replace("%data%",bio.contactInfo.location));
 
 $("#header").append(HTMLbioPic.replace("%data%",bio.pic));
-$("#header").append(HTMLwelcomeMsg.replace("%data%",bio.welcomeMessage));
+//$("#header").append(HTMLwelcomeMsg.replace("%data%",bio.welcomeMessage));
 
 if (bio.skills.length>0){
     $("#header").append(HTMLskillsStart);
@@ -128,16 +124,24 @@ displayWork();
 
 projects.display();
 
-$("#main").append(internationalizeButton);
 
+for (i in education.schools){
+    $("#education").append(HTMLschoolStart);
+    $(".education-entry:last").append(HTMLschoolName.replace("%data%",education.schools[i].name)+HTMLschoolDegree.replace("%data%",education.schools[i].program));
+    $(".education-entry:last").append(HTMLschoolLocation.replace("%data%",education.schools[i].city));
+    $(".education-entry:last").append(HTMLschoolDates.replace("%data%",education.schools[i].dates));
+    $(".education-entry:last").append(HTMLschoolMajor.replace("%data%","Candiate to receive the International Baccalaureate diploma"));
+}
 
+$("#education").append(HTMLonlineClasses);
+for (i in education.online_courses){
+    $("#education").append(HTMLschoolStart);
+    $(".education-entry:last").append(HTMLonlineTitle.replace("%data%",education.online_courses[i].title)+HTMLonlineSchool.replace("%data%",education.online_courses[i].school));
+    $(".education-entry:last").append(HTMLonlineDates.replace("%data%",education.online_courses[i].date));
+    $(".education-entry:last").append(HTMLonlineDescription.replace("%data%",education.online_courses[i].description));
+}
 
-/*
-var formattedName = HTMLheaderName.replace("%data%",bio.name);
-var formattedRole = HTMLheaderRole.replace("%data%",role);
-
-$("#header").prepend(formattedRole);
-$("#header").prepend(formattedName);
-
-$("#main").append(bio.name);
-*/
+$("#footerContacts").append(HTMLmobile.replace("%data%",bio.contactInfo.mobile));
+$("#footerContacts").append(HTMLemail.replace("%data%",bio.contactInfo.email));
+$("#footerContacts").append(HTMLgithub.replace("%data%",bio.contactInfo.github));
+$("#footerContacts").append(HTMLlocation.replace("%data%",bio.contactInfo.location));

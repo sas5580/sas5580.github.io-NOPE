@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:100,400,500);
+
 body,
 div,
 ul,
@@ -11,7 +13,7 @@ h5,
 h6 {
   padding:0;
   margin:0;
-  font-family: "Roboto", sans-serif;
+  font-family: "Raleway"
 }
 
 .clear-fix {
@@ -26,24 +28,24 @@ h6 {
 
 h1 {
   font-size: 40px;
-  color: #f5a623;
+  color: #9C0000;
   line-height: 48px;
   display: inline;
 }
 
 h2 {
-  font-weight: bold;
+  font-weight: 600;
   font-size: 24px;
-  color: #999;
+  color: #fff;
   line-height: 29px;
   padding: 10px;
 }
 
 h3 {
-  font-style: italic;
   font-size: 20px;
   color: #000;
   line-height: 22px;
+  font-weight: 800;
 }
 
 h4 {
@@ -90,6 +92,7 @@ a {
   text-decoration: none;
   margin-top: 10px;
   display: block;
+  font-weight: 600;
 }
 
 .welcome-message {
@@ -100,21 +103,21 @@ a {
 }
 
 #skills-h3 {
-  color: #f5ae23;
+  color: #9C0000;
   display: none;
 }
 
 .orange {
-  background-color: #f5ae23;
+  background-color: #263E6B;
 }
 
 .orange-text {
-  color: #f5ae23;
+  color: #F75C5C;
 }
 
 .white-text {
-  font-weight: bold;
-  color: #fff;
+  //font-weight: bold;
+  color: #D5FFCE;
 }
 
 .gray {
@@ -124,12 +127,13 @@ a {
 }
 
 .dark-gray {
-  background-color: #4a4a4a;
+  background-color: #000;
 }
 
 /* TODO: Replace with image later */
 #header {
-  background-color: #484848;
+  background-image: url("../images/bg.png");
+  background-position: 0% 20%;
 }
 
 .flex-box {
@@ -141,8 +145,13 @@ a {
   padding: 10px;
 }
 
+span a{
+  display: inherit;
+  color: #DAF6FF;
+}
+
 .center-content {
-  padding: 2.5% 5%;
+  padding: 2.5% 15%;
 }
 
 ul {
@@ -161,11 +170,17 @@ img {
 }
 
 span {
+  font-weight: 600;
   padding: 5px;
+  color: #fff;
 }
 
 #lets-connect {
   text-align: center;
+}
+
+.project-entry img{
+  width: 329px;
 }
 
 /* Media queries to handle various device widths */
@@ -192,18 +207,6 @@ span {
   .welcome-message {
     display: none;
   }
-}
-
-#map {
-  display: block;
-  height: 100%;
-  margin: 0 5%;
-}
-
-#mapDiv {
-  height: 400px;
-  width: 100%;
-  padding-bottom: 5%;
 }
 
 @media only screen and (min-width: 750px) {
